@@ -1,0 +1,111 @@
+
+ship model.png
+size: 2000,1501
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+obj_Central trust
+  rotate: true
+  xy: 1262, 2
+  size: 317, 309
+  orig: 317, 309
+  offset: 0, 0
+  index: -1
+obj_L trust
+  rotate: true
+  xy: 1573, 90
+  size: 229, 194
+  orig: 229, 194
+  offset: 0, 0
+  index: -1
+obj_R trust
+  rotate: false
+  xy: 1769, 125
+  size: 229, 194
+  orig: 229, 194
+  offset: 0, 0
+  index: -1
+obj_back l
+  rotate: true
+  xy: 1356, 911
+  size: 588, 630
+  orig: 588, 630
+  offset: 0, 0
+  index: -1
+obj_central gun
+  rotate: false
+  xy: 1769, 20
+  size: 65, 103
+  orig: 65, 103
+  offset: 0, 0
+  index: -1
+obj_contur shields
+  rotate: false
+  xy: 640, 2
+  size: 620, 662
+  orig: 620, 662
+  offset: 0, 0
+  index: -1
+obj_decails color
+  rotate: true
+  xy: 1356, 321
+  size: 588, 630
+  orig: 588, 630
+  offset: 0, 0
+  index: -1
+obj_fl gun
+  rotate: false
+  xy: 1304, 561
+  size: 41, 160
+  orig: 41, 160
+  offset: 0, 0
+  index: -1
+obj_fr gun
+  rotate: true
+  xy: 1836, 82
+  size: 41, 160
+  orig: 41, 160
+  offset: 0, 0
+  index: -1
+obj_l gun
+  rotate: true
+  xy: 1076, 666
+  size: 55, 226
+  orig: 55, 226
+  offset: 0, 0
+  index: -1
+obj_ligth source
+  rotate: true
+  xy: 820, 666
+  size: 55, 254
+  orig: 55, 254
+  offset: 0, 0
+  index: -1
+obj_r gun
+  rotate: false
+  xy: 1262, 333
+  size: 55, 226
+  orig: 55, 226
+  offset: 0, 0
+  index: -1
+obj_shield
+  rotate: false
+  xy: 2, 666
+  size: 816, 833
+  orig: 816, 833
+  offset: 0, 0
+  index: -1
+obj_ship body
+  rotate: true
+  xy: 2, 2
+  size: 662, 636
+  orig: 662, 636
+  offset: 0, 0
+  index: -1
+obj_trace
+  rotate: false
+  xy: 820, 723
+  size: 534, 776
+  orig: 534, 776
+  offset: 0, 0
+  index: -1
