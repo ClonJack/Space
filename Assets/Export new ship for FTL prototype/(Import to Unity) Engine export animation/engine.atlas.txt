@@ -1,0 +1,13 @@
+
+engine.png
+size: 352,362
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+obj_L trust
+  rotate: false
+  xy: 6, 2
+  size: 340, 358
+  orig: 340, 358
+  offset: 0, 0
+  index: -1

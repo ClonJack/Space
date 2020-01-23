@@ -1,0 +1,13 @@
+
+Central engine.png
+size: 432,431
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+obj_Central trust
+  rotate: false
+  xy: 6, 2
+  size: 420, 427
+  orig: 420, 427
+  offset: 0, 0
+  index: -1

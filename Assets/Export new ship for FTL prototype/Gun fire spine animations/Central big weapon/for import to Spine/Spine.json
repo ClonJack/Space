@@ -1,0 +1,18 @@
+{"skeleton":{"images":""},
+"bones":[{"name":"root"}],
+"slots":[
+	{"name":"obj_fr gun fire FX","bone":"root","attachment":"obj_fr gun fire FX"},
+	{"name":"xl_size weapon v2","bone":"root","attachment":"xl_size weapon v2"},
+	{"name":"xl_size weapon v2 FIRE","bone":"root","attachment":"xl_size weapon v2 FIRE"},
+	{"name":"obj_fr Bgun fire FX","bone":"root","attachment":"obj_fr Bgun fire FX"}
+],
+"skins":{
+	"default":{
+		"obj_fr gun fire FX":{"obj_fr gun fire FX":{"x":1155,"y":2163,"width":214,"height":324}},
+		"xl_size weapon v2":{"xl_size weapon v2":{"x":1153,"y":1963.5,"width":148,"height":241}},
+		"xl_size weapon v2 FIRE":{"xl_size weapon v2 FIRE":{"x":1153,"y":1963.5,"width":148,"height":241}},
+		"obj_fr Bgun fire FX":{"obj_fr Bgun fire FX":{"x":1156.5,"y":2800.5,"width":219,"height":379}}
+	}
+},
+"animations":{"animation":{}}
+}

@@ -21,11 +21,14 @@ public abstract class Ship
 
     public virtual void DateShip()
     {
-
+        if(MechanismsShip!=null)
         CountMechanisms = MechanismsShip.childCount;
 
-        HpShip = CountMechanisms * 10;//кол-во хп зависит от кол-во механизмов 
-
+        if (CountMechanisms > 0)
+        {
+         
+            HpShip = CountMechanisms * 10;//кол-во хп зависит от кол-во механизмов 
+        }
 
      
 

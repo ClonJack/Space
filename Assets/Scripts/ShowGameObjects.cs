@@ -7,7 +7,7 @@ public class ShowGameObjects : MonoBehaviour
 {
 
     [SerializeField] private List<GameObject> showGm;
-    [SerializeField] private float second;
+    [SerializeField] private float second = 0;
 
 
     private IEnumerator FirstShow(int id)
@@ -59,12 +59,12 @@ public class ShowGameObjects : MonoBehaviour
 
         GameObject setGameobj = showGm[idParent].transform.GetChild(IdChild).gameObject;
 
-    
+
 
 
         if (setGameobj.GetComponent<Image>() != null)
         {
-            
+
 
             Image currentImg = setGameobj.GetComponent<Image>();
             Color color = currentImg.color;
@@ -83,7 +83,7 @@ public class ShowGameObjects : MonoBehaviour
         {
             if (setGameobj.transform.childCount > 0)
             {
-                for(int i = 0; i < setGameobj.transform.childCount; i++)
+                for (int i = 0; i < setGameobj.transform.childCount; i++)
                 {
 
                     if (setGameobj.transform.GetChild(i).GetComponent<Image>() != null)
