@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3e95a05e4c9774397eeeb7bdee8ccb, type: 3}
-  m_Name: fly control
+  m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
+  m_Name: engine_Atlas
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 20e004898ccd3f64085d68ce71a764a2, type: 2}
-  animationName: fly control
+  atlasFile: {fileID: 4900000, guid: e6303cc030d00034fa84df12e08fd1ed, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 4d26ea9927f670b4a8854119503165e0, type: 2}

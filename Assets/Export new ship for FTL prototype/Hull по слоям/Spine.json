@@ -1,0 +1,32 @@
+{"skeleton":{"images":""},
+"bones":[{"name":"root"}],
+"slots":[
+	{"name":"iPhone 8 Plus","bone":"root","attachment":"iPhone 8 Plus"},
+	{"name":"SHIP template","bone":"root","attachment":"SHIP template"},
+	{"name":"L4_ship forma","bone":"root","attachment":"L4_ship forma"},
+	{"name":"L3_hull color","bone":"root","attachment":"L3_hull color"},
+	{"name":"L2_up details","bone":"root","attachment":"L2_up details"},
+	{"name":"R_shadow","bone":"root","attachment":"R_shadow"},
+	{"name":"L_shadow","bone":"root","attachment":"L_shadow"},
+	{"name":"L0_Decals","bone":"root","attachment":"L0_Decals"},
+	{"name":"L-1_Holes","bone":"root","attachment":"L-1_Holes"},
+	{"name":"L-0_Holes","bone":"root","attachment":"L-0_Holes"},
+	{"name":"L00 obj_shield","bone":"root","attachment":"L00 obj_shield"}
+],
+"skins":{
+	"default":{
+		"iPhone 8 Plus":{"iPhone 8 Plus":{"x":862.5,"y":1532.5,"width":1725,"height":3067}},
+		"SHIP template":{"SHIP template":{"x":863.5,"y":1864.5,"width":1231,"height":1471}},
+		"L4_ship forma":{"L4_ship forma":{"x":860.5,"y":1756.5,"width":1109,"height":1197}},
+		"L3_hull color":{"L3_hull color":{"x":863,"y":1759,"width":1046,"height":1192}},
+		"L2_up details":{"L2_up details":{"x":863.5,"y":1841,"width":387,"height":620}},
+		"R_shadow":{"R_shadow":{"x":554.5,"y":1864.5,"width":613,"height":1471}},
+		"L_shadow":{"L_shadow":{"x":1172.5,"y":1864.5,"width":613,"height":1471}},
+		"L0_Decals":{"L0_Decals":{"x":864,"y":1838.5,"width":1048,"height":913}},
+		"L-1_Holes":{"L-1_Holes":{"x":823.5,"y":1742.5,"width":1073,"height":1189}},
+		"L-0_Holes":{"L-0_Holes":{"x":867.5,"y":1742.5,"width":985,"height":1189}},
+		"L00 obj_shield":{"L00 obj_shield":{"x":863.5,"y":1759.5,"width":1363,"height":1393}}
+	}
+},
+"animations":{"animation":{}}
+}

@@ -1,0 +1,12 @@
+{"skeleton":{"images":""},
+"bones":[{"name":"root"}],
+"slots":[
+	{"name":"obj_L trust","bone":"root","attachment":"obj_L trust"}
+],
+"skins":{
+	"default":{
+		"obj_L trust":{"obj_L trust":{"x":524,"y":1036,"width":340,"height":358}}
+	}
+},
+"animations":{"animation":{}}
+}
