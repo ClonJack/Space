@@ -3,9 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Spine.Unity;
+
+public interface IDamage
+
+{
+
+    void DamageForShip();
+    void WP_imgAcivateRayCast(bool isActivateRaycastTarget);
+    void CreateTarget(Vector3 PlaceSpawnElement);
+    void ReturnStateAllWeaponGameObj();
 
 
-public class PropertyWeaponInfo : MonoBehaviour
+}
+
+
+public class PropertyWeaponInfo : MonoBehaviour, IDamage
 {
 
     [SerializeField] private Weapon[] weaponsGoodShip;
@@ -51,7 +64,7 @@ public class PropertyWeaponInfo : MonoBehaviour
             mechanismsBadShip[i] = ship.enemyShip.MechanismsShip.GetChild(i).GetComponent<Mechanism>();
 
             mechanismsBadShip[i].eventGetDamage = new UnityEvent();
-            mechanismsBadShip[i].eventGetDamage.AddListener(DoDamge);
+            //  mechanismsBadShip[i].eventGetDamage.AddListener(DamageForEnemyShip);
             mechanismsBadShip[i].idMechanism = i;
             mechanismsBadShip[i].Hp = 100;
             mechanismsBadShip[i].Ship = ship;
@@ -73,7 +86,7 @@ public class PropertyWeaponInfo : MonoBehaviour
 
 
 
-    private void ReturnStateWeaponGameObj()
+    public void ReturnStateAllWeaponGameObj()
     {
 
         for (int i = 0; i < weaponsGoodShip.Length; i++)
@@ -111,7 +124,7 @@ public class PropertyWeaponInfo : MonoBehaviour
         while (alpha.a > 0)
         {
             yield return wait;
-            alpha.a -= 0.01f;
+            alpha.a -= 0.1f;
 
             stateInfo.SpawnCountElements[id].color = alpha;
         }
@@ -130,7 +143,7 @@ public class PropertyWeaponInfo : MonoBehaviour
 
 
 
-    private void CreateTarget()
+    public void CreateTarget(Vector3 PlaceSpawnElement)
     {
 
         Vector3 savePosRand = Vector3.zero;
@@ -161,7 +174,7 @@ public class PropertyWeaponInfo : MonoBehaviour
                 img.transform.SetParent(stateInfo.canvas, false);
 
 
-                img.transform.position = Input.mousePosition;
+                img.transform.position = PlaceSpawnElement;
 
 
                 if (idCreate > 0)
@@ -203,43 +216,66 @@ public class PropertyWeaponInfo : MonoBehaviour
     private void CallAnimations()
     {
         stateInfo.playAnimations.SmallShip();
-        ReturnStateWeaponGameObj();
+
+        ReturnStateAllWeaponGameObj();
 
     }
 
 
-    private IEnumerator GenerateDamage(float time)
+    private IEnumerator GenerateDamage(float time,Ship ship,Image dmg)
     {
         WaitForSeconds forSeconds = new WaitForSeconds(time);
         WaitForSeconds waitFor = new WaitForSeconds(0f);
 
-        stateInfo.ShipInit.enemyShip.HpShip -= 25;
-        stateInfo.ShipInit.enemyShip.sliderHpShip.value = stateInfo.ShipInit.enemyShip.HpShip;
-
-        Color color = stateInfo.Damage.color;
-
+      
+   
         yield return forSeconds;
-        while (stateInfo.Damage.color.a < 1)
+
+        ship.HpShip -= 25;
+        ship.sliderHpShip.value = ship.HpShip;
+
+        Color color = dmg.color;
+
+
+
+
+        while (color.a < 1f)
         {
             yield return waitFor;
-          
+
             color.a += 0.1f;
 
-            stateInfo.Damage.color = color;
-           
+            if (dmg.color.a <= 1f)
+                dmg.color = color;
+
+
 
 
 
         }
 
-          
+
+
+
+    }
+
+    private IEnumerator Shot(float time, float timeAfterShot, List<ShotWeapon> shotWeapons, int id)
+    {
+        WaitForSeconds wait = new WaitForSeconds(time);
+        WaitForSeconds seconds = new WaitForSeconds(timeAfterShot);
+
+        yield return wait;
+        shotWeapons[id].PlayAnim("fire animation demo", false);
+        stateInfo.wp_audioSource?.Play();
+        yield return seconds;
+        shotWeapons[id].PlayAnim("idle animation", true);
 
     }
 
 
     private IEnumerator ShotWeaponAnimation()
     {
-        WaitForSeconds forSeconds = new WaitForSeconds(1F);
+        WaitForSeconds forSeconds = new WaitForSeconds(1.2F);
 
         if (stateInfo.weapons.Count != 0)
         {
@@ -251,17 +287,26 @@ public class PropertyWeaponInfo : MonoBehaviour
 
                     if (stateInfo.shotWeaponGoodShip[i].Wp_Property == stateInfo.weapons[j].Wp_Property)
                     {
-                        stateInfo.wp_audioSource?.Play();
-                        stateInfo.shotWeaponGoodShip[i].PlayAnim("fire animation demo", false);
+
+                        StartCoroutine(Shot(0.1f, 1f, stateInfo.shotWeaponGoodShip, i));
+                        StartCoroutine(GenerateDamage(stateInfo.weapons[j].Time, stateInfo.ShipInit.enemyShip,stateInfo.DamageForEnemy));
+
                         yield return forSeconds;
-                        stateInfo.shotWeaponGoodShip[i].PlayAnim("idle animation", true);
-                        StartCoroutine(GenerateDamage(stateInfo.weapons[j].Time));
+
+                        int id = stateInfo.weapons[j].IdWp;
+
+                        if (stateInfo.SpawnCountElements[id] != null)
+                            StartCoroutine(I_ActivateLaser(id));
+
+
+
+                      
+
 
 
                     }
-
-
                 }
+
 
             }
 
@@ -269,65 +314,84 @@ public class PropertyWeaponInfo : MonoBehaviour
         }
 
 
-        for (int i = 0; i < weaponsGoodShip.Length; i++)
-        {
-            Image img = weaponsGoodShip[i].GetComponent<Image>();
-            img.raycastTarget = true;
-        }
-
+    
 
         stateInfo.IsAttackWeaopons = false;
+
+
+        StartCoroutine(DamageForGoodShip());
+
+
+
+
     }
 
 
 
 
-    private void DoDamge()
+
+
+    public void WP_imgAcivateRayCast(bool isActivateRaycastTarget)
     {
-        if (stateInfo.IsAttackWeaopons)
+
+        for (int i = 0; i < weaponsGoodShip.Length; i++)
         {
 
 
-
-            for (int i = 0; i < weaponsGoodShip.Length; i++)
-            {
-
-
-                if (weaponsGoodShip[i].IsСhanges)
-                    stateInfo.CurrentImageElments[i] = weaponsGoodShip[i].Weapon_img;
+            if (weaponsGoodShip[i].IsСhanges)
+                stateInfo.CurrentImageElments[i] = weaponsGoodShip[i].Weapon_img;
 
 
 
 
-                Image img = weaponsGoodShip[i].GetComponent<Image>();
-                img.raycastTarget = false;
+            Image img = weaponsGoodShip[i].GetComponent<Image>();
+            img.raycastTarget = isActivateRaycastTarget;
 
 
-            }
-
-            CreateTarget();
-
+        }
+    }
 
 
-            for (int i = 0; i < stateInfo.CurrentImageElments.Length; i++)
-            {
-                if (stateInfo.SpawnCountElements[i] != null)
-                    StartCoroutine(I_ActivateLaser(i));
+    public IEnumerator DamageForGoodShip()
+    {
+        WaitForSeconds seconds = new WaitForSeconds(1f);
+        WaitForSeconds secondsEnd = new WaitForSeconds(2f);
+        int timeDamage = Random.Range(3,5);
 
-            }
+        for (int i = 0; i < stateInfo.shotWeaponsBadShip.Count; i++)
+        {
+            int rand = Random.Range(0, stateInfo.shotWeaponsBadShip.Count);
 
+            StartCoroutine(Shot(1.5f, 2, stateInfo.shotWeaponsBadShip, rand));
+
+       
+            StartCoroutine(GenerateDamage(timeDamage, stateInfo.ShipInit.goodShip,stateInfo.DamageForGoodShip));
+
+            yield return seconds;
+        }
+
+        yield return secondsEnd;
+        WP_imgAcivateRayCast(true);
+    }
+
+
+
+    public void DamageForShip()
+    {
+        if (stateInfo.IsAttackWeaopons)
+        {
+            WP_imgAcivateRayCast(false);
+
+            CreateTarget(Input.mousePosition);
 
             StartCoroutine(ShotWeaponAnimation());
 
 
+
+
             Invoke("CallAnimations", 2f);
-
-
-
-
-
 
         }
     }
-
 }
+

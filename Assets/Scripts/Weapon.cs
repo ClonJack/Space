@@ -34,20 +34,32 @@ public class Weapon : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
 
-    
+
         stateInfo.GetInfoCurrentWepon(this);
-      
+
         stateInfo.playAnimations.BigShip();
         stateInfo.IsAttackWeaopons = true;
 
         if (!IsСhanges)
         {
-           
-           SearchSelectedImage();
+
+            SearchSelectedImage();
             stateInfo.weapons.Add(this);
 
             IsСhanges = true;
         }
+        else
+        {
+
+            string newstr = Weapon_img.sprite.name.Replace(" selected", "");
+
+            Weapon_img.sprite = Resources.Load<Sprite>("SimpleWeapons/" + newstr);
+            stateInfo.weapons.Remove(this);
+            IsСhanges = false;
+
+
+        }
+
 
     }
 

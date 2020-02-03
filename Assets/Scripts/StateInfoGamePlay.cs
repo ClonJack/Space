@@ -18,12 +18,13 @@ public class StateInfoGamePlay : MonoBehaviour
 
 
     public List<ShotWeapon> shotWeaponGoodShip;
+    public List<ShotWeapon> shotWeaponsBadShip;
 
     public Image[] CurrentImageElments;
     public Vector2[] CurrentImageElementsPositons;
     public Image[] SpawnCountElements;
 
-    public Image Damage;
+    public Image DamageForEnemy,DamageForGoodShip;
 
     public AudioSource wp_audioSource;
 
@@ -31,6 +32,8 @@ public class StateInfoGamePlay : MonoBehaviour
     public int idCurrentShips;
 
     public List<Weapon> weapons;
+
+  
 
     private void Awake()
     {

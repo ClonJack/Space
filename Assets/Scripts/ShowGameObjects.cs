@@ -2,34 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Spine.Unity;
 
 public class ShowGameObjects : MonoBehaviour
 {
 
     [SerializeField] private List<GameObject> showGm;
     [SerializeField] private float second = 0;
+    [SerializeField] private List<SkeletonGraphic> skeletonGraphics;
+   
+
+
+
 
 
     private IEnumerator FirstShow(int id)
     {
         WaitForSeconds seconds = new WaitForSeconds(second);
 
+
         GameObject setGameobj = showGm[id];
 
-        if (setGameobj.GetComponent<Image>() != null)
-        {
+          if (setGameobj.GetComponent<Image>() != null)
+          {
 
-            Image currentImg = setGameobj.GetComponent<Image>();
-            Color color = currentImg.color;
+              Image currentImg = setGameobj.GetComponent<Image>();
+              Color color = currentImg.color;
 
 
-            while (currentImg.color.a < 1)
-            {
-                yield return seconds;
-                color.a += 0.01f;
-                currentImg.color = color;
-            }
-        }
+              while (currentImg.color.a < 1)
+              {
+                  yield return seconds;
+                  color.a += 0.01f;
+                  currentImg.color = color;
+              }
+          }
+          
+
     }
 
 
@@ -109,8 +118,9 @@ public class ShowGameObjects : MonoBehaviour
         for (int i = 0; i < showGm.Count; i++)
         {
             StartCoroutine(FirstShow(i));
-            for (int j = 0; j < showGm[i].transform.childCount; j++)
-                StartCoroutine(Show(i, j));
+           
+            /*for (int j = 0; j < showGm[i].transform.childCount; j++)
+                StartCoroutine(Show(i, j));*/
         }
     }
 
